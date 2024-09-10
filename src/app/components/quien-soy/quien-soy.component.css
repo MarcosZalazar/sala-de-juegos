@@ -1,75 +1,90 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.contenedorLogo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.contenedorLogo img {
+  width: 10rem;
+  height: auto;
 }
 
 #contenedorPrincipal {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 80px 12%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 5rem;
 }
-.divFoto{
-    width: 420px;
-    height: auto;
-    transform: translateY(50px);
+
+.divFoto {
+  flex: 1 1 30%;
+  text-align: center;
+  margin: 1rem;
+}
+
+.foto {
+  width: 100%;
+  max-width: 15rem;
+  height: auto;
+  border-radius: 50%;
 }
 
 .divTexto {
-    width: 60%;
-}
-
-.divTexto ul li {
-    display: flex;
-    align-items: center;
+  flex: 1 1 60%;
+  margin: 1rem;
 }
 
 .divTexto h1 {
-    color: #e73306;
-    font-size: 80px;
-    margin-bottom: 50px;
+  color: #e73306;
+  font-size: 2rem;
 }
 
 .divTexto p {
-    color: #f0eded;
-    line-height: 26px;
-    font-size: 35px;
+  color: #f0eded;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
-.divHabilidades h3{
+.divHabilidades {
   color: #068de7;
-  font-size: 40px;
-  margin-bottom: 50px;
+  margin-top: 1rem;
+}
+
+.divHabilidades h3 {
+  font-size: 1.5rem;
 }
 
 .icon-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  font-size: 24px;
+  gap: 1rem;
+  font-size: 1.5rem;
   color: #f6f6f7;
 }
 
 .icon-container i {
-  margin-right: 10px;
+  margin-right: 0.5rem;
 }
 
-.contenerLogo{
+.contenerLogo {
   position: absolute;
   top: 75px;
   left: 10px;
 }
 
-.contenerLogo img{
+.contenerLogo img {
   width: 100px;
   height: auto;
 }
 
-.contenerLogo div{
+.contenerLogo div {
   color: white;
 }
-
-

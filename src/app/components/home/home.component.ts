@@ -19,16 +19,16 @@ import { MatCardModule } from '@angular/material/card';
 export class HomeComponent {
 
   public juegos: Juego[] = [
-    new Juego('Ahorcado', '¡Poné a prueba tu vocabulario! Adiviná la palabra antes de que se complete el'+
-              'dibujo. Un clásico de toda la vida que te hará pensar rápido. ¿Te animás a jugar?',
+    new Juego('AHORCADO', '¡Poné a prueba tu vocabulario! Adiviná la palabra antes de que se complete el'+
+              'dibujo. Un clásico que te hará pensar rápido. ¿Te animás a jugar?',
               'assets/ahorcado.png'),
-    new Juego('Mayor o Menor', '¡Jugátela! Adiviná si la próxima carta será mayor o menor.'+
+    new Juego('MAYOR O MENOR', '¡Jugátela! Adiviná si la próxima carta será mayor o menor.'+
               'Sencillo, pero súper adictivo, no vas a querer dejar de jugar. ¡Dale, animate!',
               'assets/mayorOmenor.png'),
-    new Juego('Preguntados', '¿Te la pasas repitiendo frases de los simpsons? Este juego es'+
+    new Juego('PREGUNTADOS', '¿Te la pasas repitiendo frases de los simpsons? Este juego es'+
               'para vos. Demostrá que sos el que más sabe de esta familia de Springfield',
               'assets/preguntados.png'),
-    new Juego('Wordle', 'Pensá rápido y descifrá la palabra oculta en seis intentos. Cada pista'+
+    new Juego('WORDLE', 'Pensá rápido y descifrá la palabra oculta en seis intentos. Cada pista'+
               'te acerca más a la respuesta.¡Ideal para los amantes de los desafíos!',
               'assets/wordle.png')
   ];
