@@ -1,0 +1,22 @@
+span{
+  color: white;
+}
+
+button{
+  margin-bottom: 20px;
+}
+
+.contenerLogo{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.contenerLogo img{
+  width: 100px;
+  height: auto;
+}
+
+.contenerLogo div{
+  color: white;
+}

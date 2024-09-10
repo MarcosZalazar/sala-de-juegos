@@ -1,0 +1,52 @@
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav mode="push" [ngStyle]="{ width: '250px'}">
+    <mat-toolbar>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Menú</span>
+      <span class="spacer"></span>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let item of itemsMenuLateral"
+        [routerLink]="item.url"
+        (click)="sidenav.toggle()"
+      >
+        {{ item.nombre }}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+
+    <button mat-button (click)="irAHome()">
+      <mat-icon>home</mat-icon>
+      Home
+    </button>
+
+    <button mat-button (click)="irAQuienSoy()">
+      <mat-icon>person</mat-icon>
+      Quien Soy
+    </button>
+
+    <button mat-button (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-toolbar>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>
+
+
+

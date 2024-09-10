@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<div class="contenerLogo">
+  <img src="assets/logo.jpg" alt="logo de la empresa">
+  <div class="text-lg mb-6">La sala de juegos</div>
+</div>
+
+<h1>Bienvenidos a la sala de juegos</h1>
+
+<div class="grid bm-8 pt-2">
+
+  <div class="containerCardPrincipal">
+    <div *ngFor="let juego of juegos" class="col-12 sm:col-4 md:col-3 xl:col-2">
+
+      <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+              <strong>{{ juego.nombre }}</strong>
+            </mat-card-title>
+        </mat-card-header>
+
+        <img mat-card-image [src]="juego.imagen" alt="imagen del juego">
+
+        <mat-card-content class="mt-2">
+          <p>
+            {{ juego.descripcion }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

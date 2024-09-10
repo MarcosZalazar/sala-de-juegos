@@ -1,0 +1,75 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#contenedorPrincipal {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 12%;
+}
+.divFoto{
+    width: 420px;
+    height: auto;
+    transform: translateY(50px);
+}
+
+.divTexto {
+    width: 60%;
+}
+
+.divTexto ul li {
+    display: flex;
+    align-items: center;
+}
+
+.divTexto h1 {
+    color: #e73306;
+    font-size: 80px;
+    margin-bottom: 50px;
+}
+
+.divTexto p {
+    color: #f0eded;
+    line-height: 26px;
+    font-size: 35px;
+}
+
+.divHabilidades h3{
+  color: #068de7;
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+
+.icon-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 24px;
+  color: #f6f6f7;
+}
+
+.icon-container i {
+  margin-right: 10px;
+}
+
+.contenerLogo{
+  position: absolute;
+  top: 75px;
+  left: 10px;
+}
+
+.contenerLogo img{
+  width: 100px;
+  height: auto;
+}
+
+.contenerLogo div{
+  color: white;
+}
+
+
