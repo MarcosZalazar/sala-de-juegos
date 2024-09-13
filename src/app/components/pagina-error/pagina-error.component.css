@@ -1,31 +1,51 @@
-h1{
-  color: white;
-  text-align: center;
-  margin-top: 200px;
-  margin-bottom: 50px;
-}
-
-.contenedorImg{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 20px;
+body{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-.contenerLogo{
+h3{
+  color: white;
+  font-size: 3rem;
+  margin: 0;
+  margin-bottom: 2rem;
+  margin-top: 8rem;
+}
+
+.contenedorLogo {
   position: absolute;
-  top: 70px;
-  left: 10px;
+  top: 7.2%;
+  left: 0px;
 }
 
-.contenerLogo img{
+.contenedorLogo img {
   width: 100px;
   height: auto;
 }
 
-.contenerLogo div{
+.contenedorLogo div {
   color: white;
+}
+
+.contenedorPrincipal{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.contenedorImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin-top: -8rem;
+}
+
+.contenedorImg img{
+  max-width: 100%;
+  height: auto;
 }

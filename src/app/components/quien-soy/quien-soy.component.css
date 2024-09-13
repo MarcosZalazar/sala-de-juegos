@@ -5,16 +5,6 @@ body {
   box-sizing: border-box;
 }
 
-.contenedorLogo {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.contenedorLogo img {
-  width: 10rem;
-  height: auto;
-}
-
 #contenedorPrincipal {
   display: flex;
   flex-wrap: wrap;
@@ -74,17 +64,17 @@ body {
   margin-right: 0.5rem;
 }
 
-.contenerLogo {
+.contenedorLogo {
   position: absolute;
-  top: 75px;
-  left: 10px;
+  top: 7.2%;
+  left: 0px;
 }
 
-.contenerLogo img {
+.contenedorLogo img {
   width: 100px;
   height: auto;
 }
 
-.contenerLogo div {
+.contenedorLogo div {
   color: white;
 }

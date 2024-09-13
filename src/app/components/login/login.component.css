@@ -8,12 +8,12 @@ button{
 
 .contenerLogo{
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 0%;
+  left: 0px;
 }
 
 .contenerLogo img{
-  width: 100px;
+  width: 90px;
   height: auto;
 }
 
