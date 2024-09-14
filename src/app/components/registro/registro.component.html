@@ -1,0 +1,33 @@
+<div class="contenerLogo">
+  <img src="assets/logo.jpg" alt="logo de la empresa">
+  <div class="text-lg mb-6">La sala de juegos</div>
+</div>
+
+<div class="grid p-4">
+  <div class="col-12 mb-12 mt-5 md:col-6 md:col-offset-3 md:mt-8">
+    <div class="flex flex-column">
+      <span class="text-lg mb-2">Registro</span>
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input type="text" matInput placeholder="Nombre de usuario" [(ngModel)]="usuario">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Email" [(ngModel)]="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input type="password" matInput placeholder="Contraseña" [(ngModel)]="contrasenia">
+      </mat-form-field>
+
+      <button mat-button mat-flat-button color="primary"
+        (click)="registrar()">
+        <mat-icon>person add</mat-icon>
+        Crear cuenta
+      </button>
+    </div>
+  </div>
+</div>
+

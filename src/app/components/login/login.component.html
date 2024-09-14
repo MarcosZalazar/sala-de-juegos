@@ -23,11 +23,27 @@
         Ingresar
       </button>
 
+      <button mat-button mat-flat-button color="accent"
+        (click)="autoCompletarUsuario()">
+        <mat-icon>edit</mat-icon>
+        Login Usuario 1
+      </button>
+
+      <button mat-button mat-flat-button color="accent"
+        (click)="autoCompletarUsuario()">
+        <mat-icon>edit</mat-icon>
+        Login Usuario 2
+      </button>
+
       <button mat-button mat-flat-button color="warn"
         (click)="autoCompletarUsuario()">
         <mat-icon>edit</mat-icon>
-        Autocompletar usuario
+        Login Admin
       </button>
+
+      <div class="flex justify-content-end mt-2">
+        <a routerLink="/registro" class="enlaceTagA">¿No tenés cuenta?</a>
+      </div>
     </div>
   </div>
 </div>
