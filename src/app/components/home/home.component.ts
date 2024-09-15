@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { Juego } from '../../classes/juego';
+import { Auth } from '@angular/fire/auth';
 
 import { HeaderComponent } from '../header/header.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-
 
 
 @Component({
@@ -19,6 +18,11 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+  constructor(
+    private router : Router,
+    public auth: Auth
+  ){}
 
   public juegos: Juego[] = [
     new Juego('AHORCADO', '¡Poné a prueba tu vocabulario! Adiviná la palabra antes de que se complete el'+

@@ -5,7 +5,11 @@
   <div class="text-lg mb-6">La sala de juegos</div>
 </div>
 
-<h1>Bienvenidos a la sala de juegos</h1>
+@if (auth.currentUser?.email){
+  <h1>Bienvenido {{auth.currentUser?.email}}</h1>
+} @else{
+  <h1>Nuestros juegos destacados {{auth.currentUser?.email}}</h1>
+}
 
 <div class="contenedorPrincipal grid">
   <mat-card *ngFor="let juego of juegos">

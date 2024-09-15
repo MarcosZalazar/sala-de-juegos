@@ -36,20 +36,8 @@ export class HeaderComponent {
     { nombre: 'Wordle', url:'./paginaError' },
   ]
 
-  public irAHome(): void{
-    this.router.navigate(['/home']);
-  }
-
-  public irALogin(): void{
-    this.router.navigate(['/login']);
-  }
-
-  public irARegistro(): void{
-    this.router.navigate(['/registro']);
-  }
-
-  public irAQuienSoy(): void{
-    this.router.navigate(['/quienSoy']);
+  public navegarA(url: string): void{
+    this.router.navigate([url]);
   }
 
   public logout(): void{
@@ -57,9 +45,25 @@ export class HeaderComponent {
     .then(() => {
       this.router.navigate(['/home']);
     })
-    .catch((e) => {
-      this.mensajeRespuesta = "El usuario no pudo abandonar la aplicación correctamente";
+    .catch((error) => {
+
+      switch (error.code) {
+        case 'auth/network-request-failed':
+          this.mensajeRespuesta = "La solicitud de red ha fallado";
+          break;
+        case 'auth/too-many-requests':
+          this.mensajeRespuesta = "Demasiadas solicitudes. Inténtalo más tarde";
+          break;
+        case 'auth/internal-error':
+          this.mensajeRespuesta = "Error interno del servidor";
+          break;
+        default:
+          this.mensajeRespuesta = `Se produjo el siguiente error: ${error.code}. Vuelve a intentarlo`;
+          break;
+      }
+
       Swal.fire('Error', this.mensajeRespuesta, 'error');
+
     });
   }
 }

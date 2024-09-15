@@ -1,26 +1,30 @@
 <mat-toolbar>
   <span class="example-spacer"></span>
-  <button mat-button aria-label="ícono de hogar" (click)="irAHome()">
+  <button mat-button aria-label="ícono de hogar" (click)="navegarA('/home')">
     <mat-icon>home</mat-icon>
     Home
   </button>
 
-  <button mat-button aria-label="ícono de entrar" (click)="irALogin()">
-    <mat-icon>login</mat-icon>
-    Login
-  </button>
+  @if (!auth.currentUser?.email){
+    <button mat-button aria-label="ícono de entrar" (click)="navegarA('/login')">
+      <mat-icon>login</mat-icon>
+      Login
+    </button>
+  }
 
-  <button mat-button aria-label="ícono de registro" (click)="irARegistro()">
-    <mat-icon>app_registration</mat-icon>
-    Registro
-  </button>
+  @if (!auth.currentUser?.email){
+    <button mat-button aria-label="ícono de registro" (click)="navegarA('/registro')">
+      <mat-icon>app_registration</mat-icon>
+      Registro
+    </button>
+  }
 
   <button mat-button aria-label="ícono de chat">
     <mat-icon>chat</mat-icon>
     Sala de chat
   </button>
 
-  <button mat-button aria-label="ícono de persona" (click)="irAQuienSoy()">
+  <button mat-button aria-label="ícono de persona" (click)="navegarA('/quienSoy')">
     <mat-icon>person</mat-icon>
     Quien Soy
   </button>
