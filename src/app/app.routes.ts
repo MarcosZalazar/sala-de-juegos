@@ -11,6 +11,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'paginaError', component: PaginaErrorComponent },
   { path: 'quienSoy', component: QuienSoyComponent },
-  { path: '', redirectTo:'login', pathMatch:"full"},
+  { path: '', redirectTo:'home', pathMatch:"full"},
   { path: '**', redirectTo: 'paginaError' }
 ];

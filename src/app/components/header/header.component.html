@@ -5,7 +5,17 @@
     Home
   </button>
 
-  <button mat-button aria-label="ícono de chat" (click)="irAHome()">
+  <button mat-button aria-label="ícono de entrar" (click)="irALogin()">
+    <mat-icon>login</mat-icon>
+    Login
+  </button>
+
+  <button mat-button aria-label="ícono de registro" (click)="irARegistro()">
+    <mat-icon>app_registration</mat-icon>
+    Registro
+  </button>
+
+  <button mat-button aria-label="ícono de chat">
     <mat-icon>chat</mat-icon>
     Sala de chat
   </button>
@@ -15,7 +25,7 @@
     Quien Soy
   </button>
 
-  <button mat-button aria-label="ícono de salir" (click)="onLogout()">
+  <button mat-button aria-label="ícono de salir" (click)="logout()">
     <mat-icon>logout</mat-icon>
     Logout
   </button>

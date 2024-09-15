@@ -9,36 +9,36 @@
       <span class="text-lg mb-2">Login</span>
       <mat-form-field>
         <mat-label>Usuario</mat-label>
-        <input type="text" matInput placeholder="Nombre de usuario" [(ngModel)]="usuarioAValidar">
+        <input type="text" matInput placeholder="Nombre de usuario" [(ngModel)]="usuario">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Contraseña</mat-label>
-        <input type="password" matInput placeholder="Contraseña" [(ngModel)]="contraseniaAValidar">
+        <input type="password" matInput placeholder="Contraseña" [(ngModel)]="contrasenia">
       </mat-form-field>
 
       <button mat-button mat-flat-button color="primary"
-        (click)="onLogin(usuarioAValidar,contraseniaAValidar)">
+        (click)="login()">
         <mat-icon>login</mat-icon>
         Ingresar
       </button>
 
       <button mat-button mat-flat-button color="accent"
-        (click)="autoCompletarUsuario()">
+        (click)="autoCompletarUsuario(usuarioUno)">
         <mat-icon>edit</mat-icon>
-        Login Usuario 1
+        {{usuarioUno}}
       </button>
 
       <button mat-button mat-flat-button color="accent"
-        (click)="autoCompletarUsuario()">
+        (click)="autoCompletarUsuario(usuarioDos)">
         <mat-icon>edit</mat-icon>
-        Login Usuario 2
+        {{usuarioDos}}
       </button>
 
       <button mat-button mat-flat-button color="warn"
-        (click)="autoCompletarUsuario()">
+        (click)="autoCompletarUsuario(admin)">
         <mat-icon>edit</mat-icon>
-        Login Admin
+        {{admin}}
       </button>
 
       <div class="flex justify-content-end mt-2">

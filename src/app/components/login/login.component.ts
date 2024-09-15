@@ -8,7 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-login',
@@ -20,28 +22,62 @@ import Swal from 'sweetalert2'
 })
 export class LoginComponent {
 
-  constructor(private router: Router){}
+  constructor(
+    private router: Router,
+    public auth: Auth,
+    private firestore: Firestore
+  ){}
 
-  private usuarioAutorizado: String = "Prueba";
-  private contraseniaAutorizada: String = "abc123";
-  public usuarioAValidar: String = "";
-  public contraseniaAValidar: String = "";
+  public usuarioUno: string = "Usuario 1";
+  public contraseniaUno: string = "abc123";
+  public usuarioDos: string = "Usuario 2";
+  public contraseniaDos: string = "abc124";
+  public admin: string = "Admin";
+  public contraseniaAdmin: string = "abc125";
 
-  public onLogin(usuarioAValidar: String, contraseniaAValidar: String ): void{
+  public usuario: string = "";
+  public contrasenia: string = "";
 
-    if(usuarioAValidar==this.usuarioAutorizado &&
-       contraseniaAValidar==this.contraseniaAutorizada)
-    {
+  public mensajeRespuesta: string = "";
+
+  public login(): void{
+
+    signInWithEmailAndPassword(this.auth, this.usuario, this.contrasenia)
+    .then(() => {
       this.router.navigate(['/home']);
-    }
-    else
-    {
-      Swal.fire('Error','El usuario o la contraseña son inválidos','error');
-    }
+    })
+    .catch((e) => {
+      this.mensajeRespuesta = "El usuario no pudo loguearse";
+      Swal.fire('Error', this.mensajeRespuesta, 'error');
+    });
   }
 
-  public autoCompletarUsuario(): void{
-    this.usuarioAValidar="Prueba";
-    this.contraseniaAValidar="abc123";
+  public registrarLogin(): void{
+
+    let coleccion = collection(this.firestore, 'logins');
+    let documento = {
+      "usuario": this.usuario,
+      fecha: new Date()
+    };
+
+     addDoc(coleccion, documento);
+  }
+
+  //REFACTORIZAR: LAS CONTRASEÑAS SE DEBEN TRAER CON UNA QUERY DESDE FIREBASE
+  public autoCompletarUsuario(usuario: string): void{
+
+    this.usuario=usuario;
+
+    switch (usuario) {
+      case "Usuario 1":
+        this.contrasenia=this.contraseniaUno;
+        break;
+      case "Usuario 2":
+        this.contrasenia=this.contraseniaDos;
+        break;
+      default:
+        this.contrasenia=this.contraseniaAdmin;
+        break;
+    }
   }
 }
