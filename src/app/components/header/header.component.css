@@ -1,10 +1,21 @@
 .mat-toolbar {
+  display: flex;
+  min-height: 70px;
   background: rgb(183, 235, 255);
-  color: #fff;
-  height: 50px;
-  min-height: 50px;
+  color: #0e0d0d;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
+.contenedorLogo {
+  display: flex;
+  align-items: center;
 }
+
+.contenedorLogo img {
+  height: 65px;
+  margin-right: 10px;
+}
+
+
+

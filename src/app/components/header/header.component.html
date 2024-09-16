@@ -1,37 +1,42 @@
 <mat-toolbar>
-  <span class="example-spacer"></span>
-  <button mat-button aria-label="ícono de hogar" (click)="navegarA('/home')">
-    <mat-icon>home</mat-icon>
-    Home
-  </button>
-
-  @if (!auth.currentUser?.email){
-    <button mat-button aria-label="ícono de entrar" (click)="navegarA('/login')">
-      <mat-icon>login</mat-icon>
-      Login
+  <div class="contenedorLogo">
+    <img src="assets/logo.jpg" alt="logo de la empresa">
+    <span>La sala de juegos</span>
+  </div>
+  <div class="contenedorBotones">
+    <button mat-button aria-label="ícono de hogar" (click)="navegarA('/home')">
+      <mat-icon>home</mat-icon>
+      Home
     </button>
-  }
 
-  @if (!auth.currentUser?.email){
-    <button mat-button aria-label="ícono de registro" (click)="navegarA('/registro')">
-      <mat-icon>app_registration</mat-icon>
-      Registro
+    @if (!auth.currentUser?.email){
+      <button mat-button aria-label="ícono de entrar" (click)="navegarA('/login')">
+        <mat-icon>login</mat-icon>
+        Login
+      </button>
+    }
+
+    @if (!auth.currentUser?.email){
+      <button mat-button aria-label="ícono de registro" (click)="navegarA('/registro')">
+        <mat-icon>app_registration</mat-icon>
+        Registro
+      </button>
+    }
+
+    <button mat-button aria-label="ícono de chat">
+      <mat-icon>chat</mat-icon>
+      Sala de chat
     </button>
-  }
 
-  <button mat-button aria-label="ícono de chat">
-    <mat-icon>chat</mat-icon>
-    Sala de chat
-  </button>
+    <button mat-button aria-label="ícono de persona" (click)="navegarA('/quienSoy')">
+      <mat-icon>person</mat-icon>
+      Quien Soy
+    </button>
 
-  <button mat-button aria-label="ícono de persona" (click)="navegarA('/quienSoy')">
-    <mat-icon>person</mat-icon>
-    Quien Soy
-  </button>
-
-  <button mat-button aria-label="ícono de salir" (click)="logout()">
-    <mat-icon>logout</mat-icon>
-    Logout
-  </button>
+    <button mat-button aria-label="ícono de salir" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </div>
 </mat-toolbar>
 

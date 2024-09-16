@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
+import { HeaderComponent } from '../header/header.component';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,11 +12,12 @@ import { MatButtonModule } from '@angular/material/button';
 import Swal from 'sweetalert2'
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 
+
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [FormsModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule,
-            MatButtonModule],
+  imports: [FormsModule, RouterModule, HeaderComponent, MatFormFieldModule, MatInputModule,
+            MatIconModule, MatButtonModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })

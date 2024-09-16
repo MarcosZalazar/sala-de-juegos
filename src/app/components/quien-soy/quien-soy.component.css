@@ -64,17 +64,3 @@ body {
   margin-right: 0.5rem;
 }
 
-.contenedorLogo {
-  position: absolute;
-  top: 7.8%;
-  left: 0px;
-}
-
-.contenedorLogo img {
-  width: 90px;
-  height: auto;
-}
-
-.contenedorLogo div {
-  color: white;
-}

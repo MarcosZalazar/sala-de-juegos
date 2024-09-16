@@ -1,10 +1,5 @@
 <app-header></app-header>
 
-<div class="contenedorLogo">
-  <img src="assets/logo.jpg" alt="logo de la empresa">
-  <div class="text-lg mb-6">La sala de juegos</div>
-</div>
-
 @if (auth.currentUser?.email){
   <h1>Bienvenido {{auth.currentUser?.email}}</h1>
 } @else{
