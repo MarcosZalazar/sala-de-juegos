@@ -1,6 +1,10 @@
 h1{
   color: white;
   text-align: center;
+  padding-top:50px;
+  font-family: "Comic Neue", cursive;
+  font-weight: 700;
+  font-style: italic;
 }
 
 .contenedorPrincipal {
@@ -13,6 +17,25 @@ h1{
   gap: 50px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.card{
+  border: lightblue 5px solid;
+  overflow: hidden;
+  transition: all 400ms ease;
+  font-family: "Comic Neue", cursive;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.card:hover{
+  transform: translateY(-4%);
+}
+
+.cardHeader{
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 img {
