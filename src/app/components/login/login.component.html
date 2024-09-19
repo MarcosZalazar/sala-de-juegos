@@ -14,26 +14,22 @@
         <input type="password" matInput placeholder="Contraseña" [(ngModel)]="contrasenia">
       </mat-form-field>
 
-      <button mat-button mat-flat-button color="primary"
-        (click)="login()">
+      <button mat-button mat-flat-button (click)="login()">
         <mat-icon>login</mat-icon>
         Ingresar
       </button>
 
-      <button mat-button mat-flat-button color="accent"
-        (click)="autoCompletarUsuario(0)">
+      <button mat-button class="botonesAutocompletar" (click)="autoCompletarUsuario(0)">
         <mat-icon>edit</mat-icon>
         Usuario 1
       </button>
 
-      <button mat-button mat-flat-button color="accent"
-        (click)="autoCompletarUsuario(1)">
+      <button mat-button class="botonesAutocompletar" (click)="autoCompletarUsuario(1)">
         <mat-icon>edit</mat-icon>
         Usuario 2
       </button>
 
-      <button mat-button mat-flat-button color="warn"
-        (click)="autoCompletarUsuario(2)">
+      <button mat-button class="botonesAutocompletar" (click)="autoCompletarUsuario(2)">
         <mat-icon>edit</mat-icon>
         Admin
       </button>

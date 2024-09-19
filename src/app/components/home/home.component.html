@@ -7,20 +7,20 @@
 }
 
 <div class="contenedorPrincipal grid">
-  <mat-card *ngFor="let juego of juegos" class="card">
+  <mat-card *ngFor="let card of cards" class="card">
     <mat-card-header>
         <mat-card-title class="cardHeader">
-          <strong>{{ juego.nombre }}</strong>
+          <strong>{{ card.nombre }}</strong>
         </mat-card-title>
     </mat-card-header>
 
     <div class="contenedorImgCard">
-      <img mat-card-image [src]="juego.imagen" alt="imagen del juego" class="card-image">
+      <img mat-card-image [src]="card.imagen" alt="imagen del juego" class="card-image">
     </div>
 
     <mat-card-content>
       <p>
-        {{ juego.descripcion }}
+        {{ card.descripcion }}
       </p>
     </mat-card-content>
     <mat-card-actions>

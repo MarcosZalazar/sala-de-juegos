@@ -1,19 +1,19 @@
 h1{
   color: white;
   text-align: center;
-  padding-top:50px;
+  padding-top:5px;
   font-family: "Comic Neue", cursive;
   font-weight: 700;
   font-style: italic;
 }
 
 .contenedorPrincipal {
-  padding: 70px;
+  padding: 50px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 50px;
   width: 100%;
   box-sizing: border-box;
@@ -36,11 +36,12 @@ h1{
   font-family: "Permanent Marker", cursive;
   font-weight: 400;
   font-style: normal;
+  margin-bottom: 10px;
 }
 
 img {
-  width: 80%;
-  height: 450px;
+  width: 60%;
+  height: 150px;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -49,7 +50,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 150px;
   overflow: hidden;
 }
 

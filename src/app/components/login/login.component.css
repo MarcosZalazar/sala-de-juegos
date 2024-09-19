@@ -6,6 +6,10 @@ button{
   margin-bottom: 15px;
 }
 
+.botonesAutocompletar{
+  background-color: rgb(183, 235, 255);
+}
+
 .grid{
   width: 100%;
   box-sizing: border-box;

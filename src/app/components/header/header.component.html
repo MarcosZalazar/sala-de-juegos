@@ -33,10 +33,13 @@
       Quien Soy
     </button>
 
-    <button mat-button aria-label="ícono de salir" (click)="logout()">
-      <mat-icon>logout</mat-icon>
-      Logout
-    </button>
+    @if (auth.currentUser?.email){
+      <button mat-button aria-label="ícono de salir" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    }
+
   </div>
 </mat-toolbar>
 
