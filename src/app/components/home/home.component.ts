@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 import { Card } from './../../interfaces/card.interface';
 import { HeaderComponent } from '../header/header.component';
-
-import { Auth } from '@angular/fire/auth';
+import Swal from 'sweetalert2'
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthenticationService } from '../../services/authentication.service';
 
 
 @Component({
@@ -18,12 +18,14 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
   constructor(
     private router : Router,
-    public auth: Auth
+    public authenticationService: AuthenticationService
   ){}
+
+  public email: string|null|undefined = "";
 
   public cards: Card[] = [
     {
@@ -51,4 +53,14 @@ export class HomeComponent {
       imagen: 'https://firebasestorage.googleapis.com/v0/b/saladejuegos-8b7b8.appspot.com/o/images%2Fwordle.png?alt=media&token=79ce5bcf-4a5f-4409-ab6a-29ccebfba106'
     },
   ];
+
+  ngOnInit(): void {
+    this.authenticationService.devolverUsuarioLogueado()
+    .then( usuario => {
+      this.email= usuario?.email;
+    })
+    .catch(()=> {
+      Swal.fire('Error', 'No se pudo recuperar el usuario logueado', 'error');
+    });
+  }
 }

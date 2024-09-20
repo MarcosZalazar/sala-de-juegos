@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
@@ -10,8 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 import Swal from 'sweetalert2';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { addDoc, collection, Firestore } from '@angular/fire/firestore';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -22,12 +22,11 @@ import { addDoc, collection, Firestore } from '@angular/fire/firestore';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
 
   constructor(
     private router: Router,
-    public auth: Auth,
-    private firestore: Firestore
+    public authenticationService: AuthenticationService,
   ){}
 
   public usuariosAutorizados: any = [
@@ -48,10 +47,11 @@ export class LoginComponent {
   public usuario: string = "";
   public contrasenia: string = "";
   public mensajeRespuesta: string = "";
+  public subscripciones!: Subscription[];
 
   public login(): void{
 
-    signInWithEmailAndPassword(this.auth, this.usuario, this.contrasenia)
+    this.authenticationService.login(this.usuario, this.contrasenia)
     .then(() => {
       this.registrarLogin();
       this.router.navigate(['/home']);
@@ -95,13 +95,7 @@ export class LoginComponent {
 
   public registrarLogin(): void{
 
-    let coleccion = collection(this.firestore, 'logins');
-    let documento = {
-      "usuario": this.usuario,
-      fecha: new Date()
-    };
-
-    addDoc(coleccion, documento)
+    this.authenticationService.registrarLogin(this.usuario)
     .then(() => {
     })
     .catch((error) => {
@@ -161,5 +155,9 @@ export class LoginComponent {
     this.usuario=this.usuariosAutorizados[indice].usuario;
     this.contrasenia=this.usuariosAutorizados[indice].contrasenia;
 
+  }
+
+  ngOnDestroy(): void {
+    // this.subscripciones.map(subscripcion => subscripcion.unsubscribe());
   }
 }

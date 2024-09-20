@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage, ref, getDownloadURL } from '@angular/fire/storage';
 import Swal from 'sweetalert2'
 
 import { HeaderComponent } from '../header/header.component';
+import { AuthenticationService } from '../../services/authentication.service';
 
 
 @Component({
@@ -17,13 +17,11 @@ export class PaginaErrorComponent implements OnInit {
   public imgPaginaNoEncontradaUrl?: string;
   public mensajeRespuesta: string = "";
 
-  constructor( private storage: Storage ){}
+  constructor( public authenticationService: AuthenticationService ){}
 
   ngOnInit(): void {
 
-    const reference = ref(this.storage, 'images/paginanoencontrada.png');
-
-    getDownloadURL(reference)
+    this.authenticationService.obtenerUrlDeImagen('images/paginanoencontrada.png')
     .then((url) => {
       this.imgPaginaNoEncontradaUrl=url;
     })

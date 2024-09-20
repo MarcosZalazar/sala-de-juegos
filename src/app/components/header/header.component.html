@@ -9,14 +9,14 @@
       Home
     </button>
 
-    @if (!auth.currentUser?.email){
+    @if (!email){
       <button mat-button aria-label="ícono de entrar" (click)="navegarA('/login')">
         <mat-icon>login</mat-icon>
         Login
       </button>
     }
 
-    @if (!auth.currentUser?.email){
+    @if (!email){
       <button mat-button aria-label="ícono de registro" (click)="navegarA('/registro')">
         <mat-icon>app_registration</mat-icon>
         Registro
@@ -33,7 +33,7 @@
       Quien Soy
     </button>
 
-    @if (auth.currentUser?.email){
+    @if (email){
       <button mat-button aria-label="ícono de salir" (click)="logout()">
         <mat-icon>logout</mat-icon>
         Logout

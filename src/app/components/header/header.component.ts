@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 import Swal from 'sweetalert2'
-import { Auth, signOut } from '@angular/fire/auth';
+import { AuthenticationService } from '../../services/authentication.service';
 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+
 
 
 @Component({
@@ -20,14 +21,15 @@ import {MatListModule} from '@angular/material/list';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
   constructor(
     private router : Router,
-    public auth: Auth
+    public authenticationService: AuthenticationService
   ){}
 
   public mensajeRespuesta: string = "";
+  public email: string|null|undefined = "";
 
   public itemsMenuLateral = [
     { nombre: 'Ahorcado', url:'./paginaError' },
@@ -41,7 +43,7 @@ export class HeaderComponent {
   }
 
   public logout(): void{
-    signOut(this.auth)
+    this.authenticationService.logout()
     .then(() => {
       this.router.navigate(['/home']);
     })
@@ -65,5 +67,15 @@ export class HeaderComponent {
       Swal.fire('Error', this.mensajeRespuesta, 'error');
 
     });
+  }
+
+  ngOnInit(): void {
+    this.authenticationService.devolverUsuarioLogueado()
+    .then( usuario => {
+      this.email= usuario?.email;
+     })
+    .catch(()=> {
+       Swal.fire('Error', 'No se pudo recuperar el usuario logueado', 'error');
+     });
   }
 }

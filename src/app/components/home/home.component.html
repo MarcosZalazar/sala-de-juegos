@@ -1,9 +1,9 @@
 <app-header></app-header>
 
-@if (auth.currentUser?.email){
-  <h1>Bienvenido {{auth.currentUser?.email}}</h1>
+@if (email){
+  <h1>Bienvenido {{email}}</h1>
 } @else{
-  <h1>Nuestros juegos destacados {{auth.currentUser?.email}}</h1>
+  <h1>Nuestros juegos destacados {{email}}</h1>
 }
 
 <div class="contenedorPrincipal grid">

@@ -10,7 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 import Swal from 'sweetalert2'
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { AuthenticationService } from '../../services/authentication.service';
+
 
 
 @Component({
@@ -24,7 +25,7 @@ import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 export class RegistroComponent {
 
   constructor(
-    public auth: Auth,
+    public authenticationService: AuthenticationService,
     private router: Router
   ){}
 
@@ -33,7 +34,7 @@ export class RegistroComponent {
   public mensajeRespuesta: string = "";
 
   public registrar(): void{
-    createUserWithEmailAndPassword(this.auth, this.nuevoUsuario, this.nuevaContrasenia)
+    this.authenticationService.registrar(this.nuevoUsuario, this.nuevaContrasenia)
     .then(() => {
       this.router.navigate(['/home']);
       this.mensajeRespuesta = "Usuario registrado exitosamente";

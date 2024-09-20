@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Storage, ref, getDownloadURL } from '@angular/fire/storage';
 import Swal from 'sweetalert2'
 
 import { HeaderComponent } from '../header/header.component';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-quien-soy',
@@ -17,13 +17,11 @@ export class QuienSoyComponent {
   public miFotoUrl?: string;
   public mensajeRespuesta: string = "";
 
-  constructor( private storage: Storage ){}
+  constructor( public authenticationService: AuthenticationService ){}
 
   ngOnInit(): void {
 
-    const reference = ref(this.storage, 'images/miFoto.jpg');
-
-    getDownloadURL(reference)
+    this.authenticationService.obtenerUrlDeImagen('images/miFoto.jpg')
     .then((url) => {
       this.miFotoUrl=url;
     })
