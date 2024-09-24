@@ -1,0 +1,124 @@
+h2 {
+  color: white;
+  text-align: center;
+  font-family: "Comic Neue", cursive;
+  font-style: italic;
+}
+
+.botonNuevoJuego {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.contenedor {
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #b4e5f1;
+  padding: 10px;
+  border-radius: 10px;
+  width: 85%;
+  max-width: 800px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.carta-actual {
+  width: 150px;
+  margin: 0 10px;
+  text-align: center;
+  border: 2px solid #1e88e5;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #e3f2fd, #bbdefb);
+}
+
+.mat-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.mat-card-title {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #1976d2;
+}
+
+.card-image {
+  width: 80%;
+  height: auto;
+  margin: 5px auto;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.opciones {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.opciones button {
+  margin: 0 5px;
+  width: 120px;
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.opciones button:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+}
+
+.opciones button:active {
+  background-color: #0d47a1;
+  transform: scale(0.95);
+}
+
+.mensaje {
+  margin-top: 5px;
+  width: 100%;
+  height: auto;
+  min-height: 50px;
+}
+
+.mensaje-contenedor {
+  margin: 0 auto;
+  width: 450px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid #1976d2;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.respuesta-correcta {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.respuesta-incorrecta {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+}

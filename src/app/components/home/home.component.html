@@ -1,9 +1,9 @@
 <app-header></app-header>
 
-@if (email){
-  <h1>Bienvenido {{email}}</h1>
+@if (usuarioActual?.email){
+  <h1>Bienvenido {{usuarioActual?.email}}</h1>
 } @else{
-  <h1>Nuestros juegos destacados {{email}}</h1>
+  <h1>Nuestros juegos destacados {{usuarioActual?.email}}</h1>
 }
 
 <div class="contenedorPrincipal grid">
@@ -24,7 +24,11 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-flat-button>JUGAR</button>
+      @if (usuarioActual?.email){
+        <button mat-flat-button (click)="navegarA(card.url)">JUGAR</button>
+      } @else{
+        <button mat-flat-button (click)="navegarA('')">JUGAR</button>
+      }
     </mat-card-actions>
   </mat-card>
 </div>

@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<h2>MAYOR O MENOR</h2>
+<div class="botonNuevoJuego">
+  <button mat-flat-button (click)="cargarJuegoNuevo()">JUGAR DE NUEVO</button>
+</div>
+
+<div class="contenedor">
+  <div class="cards-container">
+    <mat-card class="mat-elevation-z4 carta-actual">
+      <mat-card-header>
+        <mat-card-title>Mazo</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="urlImgCartaSiguiente" alt="imagen de carta dada vuelta" class="card-image">
+    </mat-card>
+    <mat-card class="mat-elevation-z4 carta-actual">
+      <mat-card-header>
+        <mat-card-title>Carta</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="urlImgCartaActual" alt="imagen de carta dada vuelta" class="card-image">
+    </mat-card>
+  </div>
+  <div class="mensaje">
+    <mat-card class="mensaje-contenedor">
+      <mat-card-content>
+        <p [ngClass]="estiloRespuesta">{{ mensaje }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="opciones">
+    <button mat-fab extended
+      [disabled]="desahibilitarBotones"
+      (click)="adivinar(true)">
+      <mat-icon>arrow_upward</mat-icon>
+      Mayor
+    </button>
+    <button mat-fab extended
+      [disabled]="desahibilitarBotones"
+      (click)="adivinar(false)">
+      <mat-icon>arrow_downward</mat-icon>
+      Menor
+    </button>
+  </div>
+</div>

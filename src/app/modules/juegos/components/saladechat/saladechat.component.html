@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<h2>Chats de nuestros usuarios</h2>
+
+<div class="contenedorPrincipal">
+  <div class="contenedorMensaje"  #appMensajes>
+    <div *ngFor="let chat of chatService.chats"
+    [ngClass]="{'mensaje-derecha': chatService.usuario.email === chat.email, 'mensaje-izquierda': chatService.usuario.email !== chat.email}">
+      <span class="emailUsuario"
+      [ngClass]="{'emailUsuario': chatService.usuario.email === chat.email, 'emailUsuario-alterno': chatService.usuario.email !== chat.email}">
+        {{ chat.email }}
+      </span>
+      <p>
+        {{ chat.mensaje }}
+        <sub class="fechaMensaje">
+          {{ chat.fecha | date: 'short' }}
+        </sub>
+      </p>
+    </div>
+  </div>
+  <div class="contenedorInput">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Mensaje</mat-label>
+      <input matInput [(ngModel)]="chat" (keyup.enter)="enviarChat()">
+    </mat-form-field>
+  </div>
+</div>

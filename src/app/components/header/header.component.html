@@ -9,31 +9,33 @@
       Home
     </button>
 
-    @if (!email){
+    @if (!usuarioActual?.email){
       <button mat-button aria-label="ícono de entrar" (click)="navegarA('/login')">
         <mat-icon>login</mat-icon>
         Login
       </button>
     }
 
-    @if (!email){
+    @if (!usuarioActual?.email){
       <button mat-button aria-label="ícono de registro" (click)="navegarA('/registro')">
         <mat-icon>app_registration</mat-icon>
         Registro
       </button>
     }
 
-    <button mat-button aria-label="ícono de chat">
-      <mat-icon>chat</mat-icon>
-      Sala de chat
-    </button>
+    @if (usuarioActual?.email){
+      <button mat-button aria-label="ícono de chat" (click)="navegarA('/juegos/saladechat')">
+        <mat-icon>chat</mat-icon>
+        Sala de chat
+      </button>
+    }
 
     <button mat-button aria-label="ícono de persona" (click)="navegarA('/quienSoy')">
       <mat-icon>person</mat-icon>
       Quien Soy
     </button>
 
-    @if (email){
+    @if (usuarioActual?.email){
       <button mat-button aria-label="ícono de salir" (click)="logout()">
         <mat-icon>logout</mat-icon>
         Logout

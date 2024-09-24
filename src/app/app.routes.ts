@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'paginaError', component: PaginaErrorComponent },
   { path: 'quienSoy', component: QuienSoyComponent },
+  { path: 'juegos', loadChildren:() => import('./modules/juegos/juegos.module').then(m => m.JuegosModule) },
   { path: '', redirectTo:'home', pathMatch:"full"},
   { path: '**', redirectTo: 'paginaError' }
 ];

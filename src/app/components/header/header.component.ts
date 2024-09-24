@@ -5,38 +5,32 @@ import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2'
 import { AuthenticationService } from '../../services/authentication.service';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import { User } from '@angular/fire/auth';
 
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatSidenavModule, MatButtonModule, MatIconModule,
+  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule,
             MatToolbarModule, MatListModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit{
 
+  public usuarioActual: User | null = null;
+  public mensajeRespuesta: string = "";
+  // public email: string|null|undefined = "";
+
   constructor(
     private router : Router,
     public authenticationService: AuthenticationService
   ){}
-
-  public mensajeRespuesta: string = "";
-  public email: string|null|undefined = "";
-
-  public itemsMenuLateral = [
-    { nombre: 'Ahorcado', url:'./paginaError' },
-    { nombre: 'Mayor o Menor', url:'./paginaError' },
-    { nombre: 'Preguntados', url:'./paginaError' },
-    { nombre: 'Wordle', url:'./paginaError' },
-  ]
 
   public navegarA(url: string): void{
     this.router.navigate([url]);
@@ -70,12 +64,8 @@ export class HeaderComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.authenticationService.devolverUsuarioLogueado()
-    .then( usuario => {
-      this.email= usuario?.email;
-     })
-    .catch(()=> {
-       Swal.fire('Error', 'No se pudo recuperar el usuario logueado', 'error');
-     });
+    this.authenticationService.devolverUsuarioLogueado().subscribe((usuario: User | null) => {
+      this.usuarioActual = usuario;
+    });
   }
 }

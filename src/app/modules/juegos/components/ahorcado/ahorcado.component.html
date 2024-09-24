@@ -1,1 +1,33 @@
-<p>ahorcado works!</p>
+<app-header></app-header>
+
+<h2>AHORCADO</h2>
+<div class="botonNuevoJuego">
+  <button mat-flat-button (click)="cargarJuegoNuevo()">JUGAR DE NUEVO</button>
+</div>
+
+<div class="contenedorPrincipal">
+  <div class="contenedorImagen">
+    <img [src]="urlImagen" alt="imagen del ahorcado">
+    <label class="intentosRestantes">Te quedan {{cantidadErroresPermitidos - cantidadErrores}} intentos</label>
+    <div class="contenedorPalabra">
+      <ng-container *ngIf="letrasAAdivinar.length > 0">
+        <div *ngFor="let letra of letrasAAdivinar" class="palabra">
+          <label [hidden]="!letra.visible">{{letra.letra}}</label>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<div class="contenedorTeclado">
+  <div *ngFor="let letra of objLetras">
+    <button class="botonLetra"
+        [ngClass]="{'botonPresionado': !letra.habilitado}"
+        [disabled]="!letra.habilitado || desahibilitarBotones"
+        (click)="evaluarLetraIngresada(letra.letra)">{{letra.letra}}
+    </button>
+  </div>
+</div>
+
+
+
+

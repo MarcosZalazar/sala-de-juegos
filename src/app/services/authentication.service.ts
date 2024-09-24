@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
 import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 import { Storage, ref, getDownloadURL } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,12 @@ export class AuthenticationService {
     return addDoc(coleccion, documento);
   }
 
-  public async devolverUsuarioLogueado(): Promise<User| null>{
-    return await this.auth.currentUser;
+  public devolverUsuarioLogueado(): Observable<User| null>{
+    return new Observable(subscriptor => {
+      onAuthStateChanged(this.auth, (usuario) => {
+        subscriptor.next(usuario);
+      });
+    });
   }
 
   public registrar(nuevoUsuario: string, nuevaContrasenia: string): Promise<any>{

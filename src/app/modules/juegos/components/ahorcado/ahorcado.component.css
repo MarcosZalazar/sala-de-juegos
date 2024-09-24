@@ -1,0 +1,89 @@
+h2 {
+  color: white;
+  text-align: center;
+  font-family: "Comic Neue", cursive;
+  font-style: italic;
+}
+
+.botonNuevoJuego {
+  padding-top: 1px;
+  padding-bottom: 10px;
+}
+
+.contenedorPrincipal {
+  width: 1200px;
+  height: 280px;
+  background: #b4e5f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.intentosRestantes {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #ff0000;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.contenedorImagen {
+  position: relative;
+  height: 240px;
+}
+
+.contenedorImagen img {
+  height: 180px;
+  display: block;
+}
+
+.contenedorPalabra {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  justify-content: center;
+  height: 40px;
+}
+
+.palabra {
+  width: 70px;
+  height: 70px;
+  margin: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  border-bottom: solid 2px rgb(47, 0, 255);
+}
+
+.contenedorTeclado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+
+.botonLetra {
+  width: 80px;
+  height: 40px;
+  margin: 5px;
+  font-size: 1.1em;
+  background-color: rgba(50, 110, 240, 0.735);
+  color: rgb(0, 5, 0);
+  font-weight: bold;
+}
+
+.botonLetra:active {
+  background-color: white;
+  color: black;
+}
+
+.botonLetra.botonPresionado {
+  background-color: #ffffff;
+  color: #000000;
+}
