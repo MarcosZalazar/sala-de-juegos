@@ -8,6 +8,7 @@
 <div class="contenedorPrincipal">
   <div class="contenedorImagen">
     <img [src]="urlImagen" alt="imagen del ahorcado">
+    <label class="anuncioPuntos">Puntos: {{puntosJugador}} </label>
     <label class="intentosRestantes">Te quedan {{cantidadErroresPermitidos - cantidadErrores}} intentos</label>
     <div class="contenedorPalabra">
       <ng-container *ngIf="letrasAAdivinar.length > 0">
@@ -22,7 +23,7 @@
   <div *ngFor="let letra of objLetras">
     <button class="botonLetra"
         [ngClass]="{'botonPresionado': !letra.habilitado}"
-        [disabled]="!letra.habilitado || desahibilitarBotones"
+        [disabled]="!letra.habilitado || botonesDeshabilitados"
         (click)="evaluarLetraIngresada(letra.letra)">{{letra.letra}}
     </button>
   </div>

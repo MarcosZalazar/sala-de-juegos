@@ -27,7 +27,7 @@ export class MayoromenorComponent implements OnInit, OnDestroy {
   public puntosPorAcierto: number = 1;
   public puntosJugador: number = 0;
   public estiloRespuesta: string = '';
-  public desahibilitarBotones : boolean = false;
+  public botonesDeshabilitados : boolean = false;
   public subscripciones: Subscription[] = [];
 
   constructor( private http: HttpClient ) {}
@@ -60,7 +60,7 @@ export class MayoromenorComponent implements OnInit, OnDestroy {
     this.contadorDeJugadas = 0;
     this.puntosJugador = 0;
     this.estiloRespuesta = '';
-    this.desahibilitarBotones = false;
+    this.botonesDeshabilitados = false;
   }
 
   public generarMazo(): Observable<string> {
@@ -122,7 +122,7 @@ export class MayoromenorComponent implements OnInit, OnDestroy {
         this.mensaje = `Se terminó el juego! Tu puntaje es:${this.puntosJugador} puntos.
                         Si te gustó, volvé a jugar`;
         this.estiloRespuesta = '';
-        this.desahibilitarBotones = true;
+        this.botonesDeshabilitados = true;
         Swal.fire({
           title: 'JUEGO TERMINADO',
           text: this.mensaje,

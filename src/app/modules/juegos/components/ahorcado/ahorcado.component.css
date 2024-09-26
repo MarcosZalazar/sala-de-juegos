@@ -22,13 +22,25 @@ h2 {
   border-radius: 10px;
 }
 
-.intentosRestantes {
-  font-size: 2.5em;
+.anuncioPuntos {
+  position: absolute;
+  right: 120px;
+  top: 30px;
+  font-size: 2.3em;
   font-weight: bold;
-  color: #ff0000;
+  color: rgb(17, 110, 248);
+  white-space: nowrap;
+  width: 250px;
+  text-align: left;
+}
+
+.intentosRestantes {
   position: absolute;
   right: 20px;
-  top: 20px;
+  top: 80px;
+  font-size: 2.3em;
+  font-weight: bold;
+  color: #ff0000;
 }
 
 .contenedorImagen {

@@ -20,7 +20,7 @@ export class AhorcadoComponent implements OnDestroy {
   public cantidadErroresPermitidos: number = 6;
   public puntosPorAcierto: number = 10;
   public puntosJugador: number = 0;
-  public desahibilitarBotones : boolean = false;
+  public botonesDeshabilitados : boolean = false;
   public urlImagen : string = '';
   public imagenes: string[] = [
     'https://firebasestorage.googleapis.com/v0/b/saladejuegos-8b7b8.appspot.com/o/images%2Fjuegos%2Fahorcado%2Fahorcado1.png?alt=media&token=35cca303-1079-44af-94fe-63f18af7dbb5',
@@ -48,7 +48,8 @@ export class AhorcadoComponent implements OnDestroy {
     this.palabraAAdivinar = '';
     this.letrasAAdivinar = [];
     this.urlImagen = this.imagenes[0];
-    this.desahibilitarBotones = false;
+    this.puntosJugador = 0;
+    this.botonesDeshabilitados = false;
   }
 
   public crearArrayDeObjLetras() : void {
@@ -89,15 +90,11 @@ export class AhorcadoComponent implements OnDestroy {
       this.computarError();
     }
 
+    this.deshabilitarBoton(letraAEvaluar);
     this.verificarResultado();
   }
 
   private computarAcierto(letraAEvaluar: string): void {
-    const objLetra = this.objLetras.find(x => x.letra === letraAEvaluar);
-    if (objLetra) {
-      objLetra.habilitado = false;
-    }
-
     const letras = this.letrasAAdivinar.filter(x => x.letra.toUpperCase() === letraAEvaluar);
     letras.forEach(x => x.visible = true);
     this.cantidadAciertos += letras.length;
@@ -106,6 +103,13 @@ export class AhorcadoComponent implements OnDestroy {
   private computarError(): void {
     this.cantidadErrores++;
     this.urlImagen = this.imagenes[this.cantidadErrores];
+  }
+
+  private deshabilitarBoton(letraAEvaluar: string){
+    const objLetra = this.objLetras.find(x => x.letra === letraAEvaluar);
+    if (objLetra) {
+      objLetra.habilitado = false;
+    }
   }
 
   private verificarResultado(): void {
@@ -127,7 +131,7 @@ export class AhorcadoComponent implements OnDestroy {
   }
 
   private informarResultado(titulo: string, texto: string, icono: 'success'|'error'): void {
-    this.desahibilitarBotones = true;
+    this.botonesDeshabilitados = true;
 
     Swal.fire({
       title: titulo,
