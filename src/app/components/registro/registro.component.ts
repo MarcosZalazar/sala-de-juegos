@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 import { HeaderComponent } from '../header/header.component';
@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import Swal from 'sweetalert2'
 import { AuthenticationService } from '../../services/authentication.service';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -18,23 +19,44 @@ import { AuthenticationService } from '../../services/authentication.service';
   selector: 'app-registro',
   standalone: true,
   imports: [FormsModule, RouterModule, HeaderComponent, MatFormFieldModule, MatInputModule,
-            MatIconModule, MatButtonModule],
+            MatIconModule, MatButtonModule, ReactiveFormsModule, CommonModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
 export class RegistroComponent {
 
-  constructor(
-    public authenticationService: AuthenticationService,
-    private router: Router
-  ){}
-
-  public nuevoUsuario: string = "";
-  public nuevaContrasenia: string = "";
+  public formularioRegistro!: FormGroup;
   public mensajeRespuesta: string = "";
 
+  constructor(
+    public formBuilder: FormBuilder,
+    public authenticationService: AuthenticationService,
+    private router: Router
+  ){
+    this.formularioRegistro = this.formBuilder.group(
+      {
+        nuevoUsuario: ['', [Validators.required, Validators.email] ],
+        nuevaContrasenia: ['', [Validators.required, Validators.minLength(4)] ]
+      }
+    );
+  }
+
+  get nuevoUsuario() {
+    return this.formularioRegistro.get('nuevoUsuario');
+  }
+
+  get nuevaContrasenia() {
+    return this.formularioRegistro.get('nuevaContrasenia');
+  }
+
   public registrar(): void{
-    this.authenticationService.registrar(this.nuevoUsuario, this.nuevaContrasenia)
+
+    if(this.formularioRegistro.invalid) return;
+
+    const nuevoUsuario = this.formularioRegistro.get('nuevoUsuario')?.value;
+    const nuevaContrasenia = this.formularioRegistro.get('nuevaContrasenia')?.value;
+
+    this.authenticationService.registrar(nuevoUsuario, nuevaContrasenia)
     .then(() => {
       this.router.navigate(['/home']);
       this.mensajeRespuesta = "Usuario registrado exitosamente";

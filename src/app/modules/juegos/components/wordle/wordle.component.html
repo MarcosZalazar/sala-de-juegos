@@ -1,1 +1,64 @@
-<p>wordle works!</p>
+<app-header></app-header>
+
+<h2>WORDLE</h2>
+<div class="botonJuegoNuevo">
+  <button mat-flat-button (click)="cargarJuegoNuevo()">JUGAR DE NUEVO</button>
+</div>
+
+<div class="contenedorPrincipal">
+  <div class="contenidoJuego">
+    <label class="puntajeLabel">Puntos: {{ puntosJugador }}</label>
+    <div class="contenedorContenido" tabindex="0">
+      <div class="grilla">
+        <div *ngFor="let intento of intentos; let i = index" class="filas">
+          <div *ngFor="let letra of intento.split(''); let j = index"
+               [ngClass]="{
+                 'letrasGrilla': true,
+                 'respuestaCorrecta': letra === palabraAAdivinar[j],
+                 'respuestaParcialmenteCorrecta': palabraAAdivinar.includes(letra) &&
+                                                  letra !== palabraAAdivinar[j],
+                 'respuestaIncorrecta': !palabraAAdivinar.includes(letra)
+               }">
+            {{ letra }}
+          </div>
+        </div>
+        <div class="filas">
+          <div *ngFor="let letra of respuestaActual.split('')"
+               class="letrasGrilla">{{ letra }}</div>
+          <div *ngFor="let espacioVacios of obtenerEspaciosVaciosIntentoActual()"
+               class="letrasGrilla vacias"></div>
+        </div>
+        <div *ngFor="let filasVacias of obtenerFilasVaciasRestantes()" class="filas">
+          <div *ngFor="let letrasVaciasFila of obtenerLetrasVaciasPorFila()"
+               class="letrasGrilla vacias"></div>
+        </div>
+      </div>
+      <div class="teclado">
+        <div class="botonesTeclado">
+          <button *ngFor="let letra of letras"
+                  [disabled]="botonesDeshabilitados"
+                  [ngClass]="{
+                    'correcta': estadoLetrasTeclado[letra] === 'correcta',
+                    'parcial': estadoLetrasTeclado[letra] === 'parcial',
+                    'incorrecta': estadoLetrasTeclado[letra] === 'incorrecta'
+                  }"
+                  (click)="agregarLetra(letra)">
+            {{ letra }}
+          </button>
+        </div>
+        <div class="botonesTeclado">
+          <button class="botonEnviar"
+            [disabled]="botonesDeshabilitados"
+            (click)="verificarPablabra()">
+            ENVIAR
+          </button>
+          <button class="botonBorrar"
+            [disabled]="botonesDeshabilitados"
+            (click)="borrarLetra()">
+            BORRAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

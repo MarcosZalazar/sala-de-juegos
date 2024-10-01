@@ -4,7 +4,7 @@ html, body { height: 100%;}
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-image: url('assets/fondologin.jpg');
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/saladejuegos-8b7b8.appspot.com/o/images%2Ffondologin.jpg?alt=media&token=aa847805-6c6b-4c13-84de-1621add9bd48');
 }
 
 .spacer {

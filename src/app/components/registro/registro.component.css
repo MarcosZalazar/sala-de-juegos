@@ -1,22 +1,28 @@
-span{
+span {
   color: white;
 }
 
-button{
-  margin-bottom: 15px;
+button {
+  width: 100%;
+  margin-top: 5px;
 }
 
-.grid{
+.grid {
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
 }
 
-.col-12{
+.col-12 {
   padding: 0 15px;
   box-sizing: border-box;
 }
 
-.enlaceTagA{
+.enlaceTagA {
   color: white;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 5px;
 }

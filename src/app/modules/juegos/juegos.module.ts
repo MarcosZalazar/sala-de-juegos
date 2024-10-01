@@ -14,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HeaderComponent } from '../../components/header/header.component';
 import { MatCardContent, MatCardHeader, MatCardModule, MatCardTitle } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -35,15 +35,16 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     FormsModule,
+    HeaderComponent,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    HeaderComponent,
     MatCardModule,
     MatCardTitle,
     MatCardContent,
     MatCardHeader,
     MatIconModule,
+    MatListModule,
     JuegosRoutingModule
   ]
 })

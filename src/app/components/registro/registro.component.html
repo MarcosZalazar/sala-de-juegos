@@ -4,22 +4,30 @@
   <div class="col-12 mb-12 mt-5 md:col-6 md:col-offset-3 md:mt-8">
     <div class="flex flex-column">
       <span class="text-lg mb-2">Registro</span>
-      <mat-form-field>
-        <mat-label>Usuario</mat-label>
-        <input type="text" matInput placeholder="Nombre de usuario" [(ngModel)]="nuevoUsuario">
-      </mat-form-field>
+      <form [formGroup]="formularioRegistro" (ngSubmit)="registrar()" autocomplete="off">
+        <mat-form-field>
+          <mat-label>Usuario</mat-label>
+          <input type="text" formControlName="nuevoUsuario" matInput placeholder="Nombre de usuario">
+          <ng-container *ngIf="nuevoUsuario?.hasError('email')">
+            <small class="">Formato inválido</small>
+          </ng-container>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Contraseña</mat-label>
-        <input type="password" matInput placeholder="Contraseña" [(ngModel)]="nuevaContrasenia">
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Contraseña</mat-label>
+          <input type="password" formControlName="nuevaContrasenia"  matInput placeholder="Contraseña">
+          <ng-container *ngIf="nuevaContrasenia?.hasError('minlength')">
+            <small class="text-danger">
+              La contraseña debe tener mínimo {{nuevaContrasenia?.getError('minlength').requiredLength}} caracteres
+            </small>
+          </ng-container>
+        </mat-form-field>
 
-      <button mat-button mat-flat-button color="primary"
-        (click)="registrar()">
-        <mat-icon>person add</mat-icon>
-        Crear cuenta
-      </button>
-
+        <button type="submit" mat-button mat-flat-button color="primary">
+          <mat-icon>person add</mat-icon>
+          Crear cuenta
+        </button>
+      </form>
       <div class="flex justify-content-end mt-2">
         <a routerLink="/login" class="enlaceTagA">Ya tengo cuenta de usuario</a>
       </div>

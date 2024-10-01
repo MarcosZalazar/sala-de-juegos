@@ -1,14 +1,14 @@
 h1{
   color: white;
   text-align: center;
-  padding-top:5px;
+  padding-top: 5px;
   font-family: "Comic Neue", cursive;
   font-weight: 700;
   font-style: italic;
 }
 
 .contenedorPrincipal {
-  padding: 50px;
+  padding: 30px;
 }
 
 .grid {

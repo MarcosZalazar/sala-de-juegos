@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  height: 100vh;
 }
 
 #contenedorPrincipal {
@@ -10,19 +11,16 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  margin-top: 5rem;
 }
 
 .divFoto {
   flex: 1 1 30%;
   text-align: center;
-  margin: 1rem;
 }
 
 .foto {
   width: 100%;
-  max-width: 15rem;
+  max-width: 14rem;
   height: auto;
   border-radius: 50%;
 }
@@ -30,6 +28,7 @@ body {
 .divTexto {
   flex: 1 1 60%;
   margin: 1rem;
+  overflow: hidden;
 }
 
 .divTexto h1 {
@@ -39,8 +38,8 @@ body {
 
 .divTexto p {
   color: #f0eded;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 1.1rem;
+  line-height: 1.3;
 }
 
 .divHabilidades {
@@ -49,13 +48,13 @@ body {
 }
 
 .divHabilidades h3 {
-  font-size: 1.5rem;
+  font-size: 1.4em;
 }
 
 .icon-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.6rem;
   font-size: 1.5rem;
   color: #f6f6f7;
 }
@@ -64,3 +63,7 @@ body {
   margin-right: 0.5rem;
 }
 
+h5{
+  color: #90bcf7;
+  padding-top: 15px;
+}
