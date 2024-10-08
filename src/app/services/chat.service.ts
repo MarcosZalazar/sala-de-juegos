@@ -3,7 +3,7 @@ import { addDoc, collection, collectionData, CollectionReference, Firestore, lim
 import { Chat } from '../interfaces/chat.interface';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Auth } from '@angular/fire/auth';
+import { Auth, onAuthStateChanged, User } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ChatService {
   public coleccionDeChats: CollectionReference<Chat>;
   public chats: Chat[] = [];
   public cantidadMaximaDeChats: number = 10;
-  public usuario: any;
+  public usuario: User | null = null;
 
   constructor(
     private firestore: Firestore,
@@ -21,7 +21,20 @@ export class ChatService {
   )
   {
     this.coleccionDeChats = collection(this.firestore, 'chats') as CollectionReference<Chat>;
-    this.usuario= this.auth.currentUser;
+    onAuthStateChanged(this.auth, (usuario) => {
+      this.usuario=usuario;
+    });
+  }
+
+  public obtenerUsuarioActual(): Observable<User | null> {
+    return new Observable((subscriptor) => {
+      const unsubscribe = onAuthStateChanged(this.auth, (usuario) => {
+        this.usuario=usuario;
+        subscriptor.next(usuario);
+      });
+
+      return () => unsubscribe();
+    });
   }
 
   public devolverChats(): Observable<Chat[]> {

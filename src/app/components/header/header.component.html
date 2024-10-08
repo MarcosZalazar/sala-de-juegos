@@ -30,6 +30,13 @@
       </button>
     }
 
+    @if (usuarioActual?.email){
+      <button mat-button aria-label="ícono de encuesta" (click)="navegarA('/juegos/encuesta')">
+        <mat-icon>list_alt</mat-icon>
+        Encuesta
+      </button>
+    }
+
     <button mat-button aria-label="ícono de persona" (click)="navegarA('/quienSoy')">
       <mat-icon>person</mat-icon>
       Quien Soy

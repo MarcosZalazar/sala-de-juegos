@@ -2,6 +2,7 @@ import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@ang
 import { ChatService } from '../../../../services/chat.service';
 
 import Swal from 'sweetalert2'
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-saladechat',
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2'
 export class SaladechatComponent implements OnInit, AfterViewChecked {
 
   public chat: string = "";
+  public usuarioActual: User | null = null;
   @ViewChild('appMensajes') appMensajes!: ElementRef;
 
   constructor( public chatService: ChatService ) {}
@@ -18,6 +20,9 @@ export class SaladechatComponent implements OnInit, AfterViewChecked {
   ngOnInit(){
     this.chatService.devolverChats().subscribe(() => {
       this.scrollToBottom();
+    });
+    this.chatService.obtenerUsuarioActual().subscribe((usuario) => {
+      this.usuarioActual = usuario;
     });
   }
 

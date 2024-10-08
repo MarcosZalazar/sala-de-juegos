@@ -4,12 +4,12 @@ import { Router, RouterModule } from '@angular/router';
 
 import Swal from 'sweetalert2'
 import { AuthenticationService } from '../../services/authentication.service';
+import { User } from '@angular/fire/auth';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
-import { User } from '@angular/fire/auth';
 
 
 
@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit{
 
   public usuarioActual: User | null = null;
   public mensajeRespuesta: string = "";
-  // public email: string|null|undefined = "";
 
   constructor(
     private router : Router,

@@ -33,10 +33,15 @@ export class AuthenticationService {
   public devolverUsuarioLogueado(): Observable<User| null>{
     return new Observable(subscriptor => {
       onAuthStateChanged(this.auth, (usuario) => {
-        subscriptor.next(usuario);
+        if (usuario) {
+          subscriptor.next(usuario);
+        } else {
+          subscriptor.next(null);
+        }
       });
     });
   }
+
 
   public registrar(nuevoUsuario: string, nuevaContrasenia: string): Promise<any>{
     return createUserWithEmailAndPassword(this.auth, nuevoUsuario, nuevaContrasenia);

@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy } from '@angular/core';
 
 import Swal from 'sweetalert2'
+import { ResultadosService } from '../../../../services/resultados.service';
+import { User } from '@angular/fire/auth';
+import { AuthenticationService } from '../../../../services/authentication.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -30,16 +33,27 @@ export class AhorcadoComponent implements OnDestroy {
     'https://firebasestorage.googleapis.com/v0/b/saladejuegos-8b7b8.appspot.com/o/images%2Fjuegos%2Fahorcado%2Fahorcado5.png?alt=media&token=1fad45f6-b714-4f65-a64f-1650ea08ac67',
     'https://firebasestorage.googleapis.com/v0/b/saladejuegos-8b7b8.appspot.com/o/images%2Fjuegos%2Fahorcado%2Fahorcado6.png?alt=media&token=f55c6847-133a-40cb-9daf-ce3a5b3ebf9e',
     'https://firebasestorage.googleapis.com/v0/b/saladejuegos-8b7b8.appspot.com/o/images%2Fjuegos%2Fahorcado%2Fahorcado7.png?alt=media&token=c70a7d96-8a07-4e06-ab81-a85ea36a58d2'
-  ]
+  ];
+  public usuarioActual: User | null = null;
+  public mensajeRespuesta: string = "";
+  public nombreJuego: string = "Ahorcado";
 
-  constructor( private http: HttpClient){
-    this.cargarJuegoNuevo()
+  constructor(
+    private http: HttpClient,
+    private resultadosService: ResultadosService,
+    public authenticationService: AuthenticationService
+  ){
+    this.cargarJuegoNuevo(),
+    this.authenticationService.devolverUsuarioLogueado().subscribe((usuario: User | null) => {
+      this.usuarioActual = usuario;
+    });
   }
 
   public cargarJuegoNuevo() : void {
     this.resetearValores();
     this.crearArrayDeObjLetras();
     this.generarPalabra();
+
   }
 
   public resetearValores() : void {
@@ -133,6 +147,10 @@ export class AhorcadoComponent implements OnDestroy {
   private informarResultado(titulo: string, texto: string, icono: 'success'|'error'): void {
     this.botonesDeshabilitados = true;
 
+    if (this.usuarioActual?.email){
+      this.registrarResultado(this.usuarioActual?.email, this.puntosJugador, this.nombreJuego);
+    }
+
     Swal.fire({
       title: titulo,
       text: texto,
@@ -145,6 +163,62 @@ export class AhorcadoComponent implements OnDestroy {
       if (result.isConfirmed) {
         this.cargarJuegoNuevo();
       }
+    });
+  }
+
+  public registrarResultado(usuario: string, puntaje: number, juego: string): void{
+    this.resultadosService.registrarResultado(usuario,puntaje,juego)
+    .then(() => {
+    })
+    .catch((error) => {
+
+      switch (error.code) {
+        case 'permission-denied':
+          this.mensajeRespuesta = "Permiso denegado";
+          break;
+        case 'unavailable':
+          this.mensajeRespuesta = "El servicio no está disponible temporalmente";
+          break;
+        case 'invalid-argument':
+          this.mensajeRespuesta = "Argumento no válido";
+          break;
+        case 'deadline-exceeded':
+          this.mensajeRespuesta = "La operación ha tardado demasiado tiempo";
+          break;
+        case 'already-exists':
+          this.mensajeRespuesta = "El documento ya existe";
+          break;
+        case 'resource-exhausted':
+          this.mensajeRespuesta = "Se han agotado los recursos disponibles";
+          break;
+        case 'failed-precondition':
+          this.mensajeRespuesta = "La operación no se puede realizar en el estado actual";
+          break;
+        case 'aborted':
+          this.mensajeRespuesta = "La operación fue abortada";
+          break;
+        case 'out-of-range':
+          this.mensajeRespuesta = "Valor fuera del rango permitido";
+          break;
+        case 'unimplemented':
+          this.mensajeRespuesta = "La operación no está implementada";
+          break;
+        case 'internal':
+          this.mensajeRespuesta = "Error interno del servidor";
+          break;
+        case 'data-loss':
+          this.mensajeRespuesta = "Pérdida de datos irrecuperable.";
+          break;
+        case 'unauthenticated':
+          this.mensajeRespuesta = "El usuario no está autenticado";
+          break;
+        default:
+          this.mensajeRespuesta = `Por favor, verifique los datos ingresados. Error: ${error.code}`;
+          break;
+      }
+
+      Swal.fire('Error', this.mensajeRespuesta, 'error');
+
     });
   }
 

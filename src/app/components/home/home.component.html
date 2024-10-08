@@ -24,11 +24,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      @if (usuarioActual?.email){
-        <button mat-flat-button (click)="navegarA(card.url)">JUGAR</button>
-      } @else{
-        <button mat-flat-button (click)="navegarA('')">JUGAR</button>
-      }
+      <button mat-flat-button (click)="navegarA(card.url)">JUGAR</button>
     </mat-card-actions>
   </mat-card>
 </div>

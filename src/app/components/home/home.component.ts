@@ -39,13 +39,13 @@ export class HomeComponent implements OnInit{
     {
       nombre: 'MAYOR O MENOR',
       descripcion:'¡Jugátela! Adiviná si la próxima carta será mayor o menor. Sencillo, '+
-                  'pero súper adictivo, no vas a querer dejar de jugar con todos tus amigos. ¡Dale, animate!',
+                  'pero súper adictivo, no vas a querer dejar de jugarlo con. ¡Dale, animate!',
       url:'/juegos/mayoromenor',
       imagen: 'https://firebasestorage.googleapis.com/v0/b/saladejuegos-8b7b8.appspot.com/o/images%2Fmayoromenor.png?alt=media&token=69e30c1c-ebbb-4d7d-8bc5-ff9b87d69a15'
     },
     {
       nombre: 'PREGUNTADOS',
-      descripcion:'¿Te la pasas todo el tiempo repitiendo frases de los simpsons? Este juego es '+
+      descripcion:'¿Te la pasas repitiendo frases de los simpsons? Este juego es '+
                   'para vos. Demostrá que sos el que más sabe de esta familia de Springfield',
       url:'/juegos/preguntados',
       imagen: 'https://firebasestorage.googleapis.com/v0/b/saladejuegos-8b7b8.appspot.com/o/images%2Fpreguntados.png?alt=media&token=de0f2b65-e274-4871-8306-6cb72a2640b1'

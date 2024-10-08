@@ -1,0 +1,117 @@
+<app-header></app-header>
+
+<h2>Tu opinión nos importa</h2>
+
+<p>Dejanos tu opinión para seguir mejorando nuestra página</p>
+<form [formGroup]="formEncuesta" (ngSubmit)="registrarEncuesta()"
+      autocomplete="off"
+      class="formularioEnColumnas">
+
+  <div class="columna">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre">
+      <ng-container *ngIf="nombre?.hasError('required') && nombre?.touched">
+        <small class="">El campo nombre es obligatorio</small>
+      </ng-container>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido">
+      <ng-container *ngIf="apellido?.hasError('required') && apellido?.touched">
+        <small class="">El campo apellido es obligatorio</small>
+      </ng-container>
+    </mat-form-field>
+
+    <div>
+      <label>Género:</label>
+      <mat-radio-group formControlName="genero">
+        <mat-radio-button value="masculino">Masculino</mat-radio-button>
+        <mat-radio-button value="femenino">Femenino</mat-radio-button>
+        <mat-radio-button value="otro">Otro</mat-radio-button>
+      </mat-radio-group>
+      <ng-container *ngIf="genero?.hasError('required') && genero?.touched">
+        <small class="">El campo género es obligatorio</small>
+      </ng-container>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Edad</mat-label>
+      <input matInput type="number" formControlName="edad">
+      <ng-container *ngIf="edad?.hasError('required') && edad?.touched">
+        <small class="">El campo edad es obligatorio. </small>
+      </ng-container>
+      <ng-container *ngIf="(edad?.hasError('min') || edad?.hasError('max')) && edad?.touched">
+        <small class="">Tu edad debe ser entre 18 y 99 años</small>
+      </ng-container>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Teléfono</mat-label>
+      <input matInput type="tel" formControlName="telefono">
+      <ng-container *ngIf="telefono?.hasError('required') && telefono?.touched">
+        <small class="">El campo teléfono es obligatorio. </small>
+      </ng-container>
+      <ng-container *ngIf="telefono?.hasError('pattern') && telefono?.touched">
+        <small class="">No ingrese caracteres especiales, solo números. </small>
+      </ng-container>
+      <ng-container *ngIf="telefono?.hasError('maxlength') && telefono?.touched">
+        <small class="">El número de teléfono no puede exceder los 10 caracteres</small>
+      </ng-container>
+    </mat-form-field>
+  </div>
+
+  <div class="columna">
+    <div>
+      <label>¿Que juego te gustaría que agreguemos?:</label>
+      <div formGroupName="juegos">
+        <mat-checkbox formControlName="pacman">Pacman</mat-checkbox>
+        <mat-checkbox formControlName="solitario">Solitario</mat-checkbox>
+        <mat-checkbox formControlName="buscaminas">Buscaminas</mat-checkbox>
+        <mat-checkbox formControlName="sudoku">Sudoku</mat-checkbox>
+      </div>
+      <ng-container *ngIf="juegos?.hasError('ningunJuegoSeleccionado') && juegos?.touched">
+        <small class="">Debes seleccionar al menos un juego</small>
+      </ng-container>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>¿Cómo nos calificarías (siendo 1 una mala página y 10 la mejor)?</mat-label>
+      <mat-select formControlName="calificacion">
+        <mat-option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" [value]="i">{{ i }}</mat-option>
+      </mat-select>
+      <ng-container *ngIf="calificacion?.hasError('required') && calificacion?.touched">
+        <small class="">Debe seleccionar al menos una calificación</small>
+      </ng-container>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>¿Qué cambios harías para mejorar la página?</mat-label>
+      <textarea matInput formControlName="preguntaCambios"></textarea>
+      <ng-container *ngIf="preguntaCambios?.hasError('required') && preguntaCambios?.touched">
+        <small class="">Este campo es obligatorio. </small>
+      </ng-container>
+      <ng-container *ngIf="preguntaCambios?.hasError('maxlength') && preguntaCambios?.touched">
+        <small class="">Su respuesta no puede exceder los 280 caracteres</small>
+      </ng-container>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>¿Recomendarías nuestra página a tus amigos?¿Por qué?</mat-label>
+      <textarea matInput formControlName="preguntaRecomendacion"></textarea>
+      <ng-container *ngIf="preguntaRecomendacion?.hasError('required') && preguntaRecomendacion?.touched">
+        <small class="">Este campo es obligatorio. </small>
+      </ng-container>
+      <ng-container *ngIf="preguntaRecomendacion?.hasError('maxlength') && preguntaRecomendacion?.touched">
+        <small class="">Su respuesta no puede exceder los 280 caracteres</small>
+      </ng-container>
+    </mat-form-field>
+
+    <div class="botonEnviar">
+      <button mat-flat-button type="submit">Enviar</button>
+    </div>
+  </div>
+</form>
+
+

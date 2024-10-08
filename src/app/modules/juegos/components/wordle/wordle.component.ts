@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 
 import Swal from 'sweetalert2'
 import { ApiPaisesService } from '../../../../services/api-paises.service';
+import { User } from '@angular/fire/auth';
+import { ResultadosService } from '../../../../services/resultados.service';
+import { AuthenticationService } from '../../../../services/authentication.service';
 
 @Component({
   selector: 'app-wordle',
@@ -18,9 +21,19 @@ export class WordleComponent {
   public puntosJugador: number = 10;
   public estadoLetrasTeclado: { [letra: string]: string } = {};
   public botonesDeshabilitados : boolean = false;
+  public usuarioActual: User | null = null;
+  public mensajeRespuesta: string = "";
+  public nombreJuego: string = "Wordle";
 
-  constructor(private apiPaisesService: ApiPaisesService){
-    this.cargarJuegoNuevo()
+  constructor(
+    private apiPaisesService: ApiPaisesService,
+    private resultadosService: ResultadosService,
+    public authenticationService: AuthenticationService
+  ){
+    this.cargarJuegoNuevo();
+    this.authenticationService.devolverUsuarioLogueado().subscribe((usuario: User | null) => {
+      this.usuarioActual = usuario;
+    });
   }
 
   public cargarJuegoNuevo() : void {
@@ -50,6 +63,11 @@ export class WordleComponent {
   }
 
   public obtenerFilasVaciasRestantes(): number[] {
+
+    if(this.intentos.length>=this.cantidadDeJugadas){
+      return [];
+    }
+
     const filasVacias = this.cantidadDeJugadas - this.intentos.length - 1;
     return filasVacias > 0 ? new Array(filasVacias).fill(0) : [];
   }
@@ -124,6 +142,10 @@ export class WordleComponent {
   public informarResultado(titulo: string, texto: string, icono: 'success'|'error'): void {
     this.botonesDeshabilitados = true;
 
+    if (this.usuarioActual?.email){
+      this.registrarResultado(this.usuarioActual?.email, this.puntosJugador, this.nombreJuego);
+    }
+
     Swal.fire({
       title: titulo,
       text: texto,
@@ -139,4 +161,59 @@ export class WordleComponent {
     });
   }
 
+  public registrarResultado(usuario: string, puntaje: number, juego: string): void{
+    this.resultadosService.registrarResultado(usuario,puntaje,juego)
+    .then(() => {
+    })
+    .catch((error) => {
+
+      switch (error.code) {
+        case 'permission-denied':
+          this.mensajeRespuesta = "Permiso denegado";
+          break;
+        case 'unavailable':
+          this.mensajeRespuesta = "El servicio no está disponible temporalmente";
+          break;
+        case 'invalid-argument':
+          this.mensajeRespuesta = "Argumento no válido";
+          break;
+        case 'deadline-exceeded':
+          this.mensajeRespuesta = "La operación ha tardado demasiado tiempo";
+          break;
+        case 'already-exists':
+          this.mensajeRespuesta = "El documento ya existe";
+          break;
+        case 'resource-exhausted':
+          this.mensajeRespuesta = "Se han agotado los recursos disponibles";
+          break;
+        case 'failed-precondition':
+          this.mensajeRespuesta = "La operación no se puede realizar en el estado actual";
+          break;
+        case 'aborted':
+          this.mensajeRespuesta = "La operación fue abortada";
+          break;
+        case 'out-of-range':
+          this.mensajeRespuesta = "Valor fuera del rango permitido";
+          break;
+        case 'unimplemented':
+          this.mensajeRespuesta = "La operación no está implementada";
+          break;
+        case 'internal':
+          this.mensajeRespuesta = "Error interno del servidor";
+          break;
+        case 'data-loss':
+          this.mensajeRespuesta = "Pérdida de datos irrecuperable.";
+          break;
+        case 'unauthenticated':
+          this.mensajeRespuesta = "El usuario no está autenticado";
+          break;
+        default:
+          this.mensajeRespuesta = `Por favor, verifique los datos ingresados. Error: ${error.code}`;
+          break;
+      }
+
+      Swal.fire('Error', this.mensajeRespuesta, 'error');
+
+    });
+  }
 }
