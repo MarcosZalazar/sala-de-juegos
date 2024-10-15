@@ -31,6 +31,13 @@
     }
 
     @if (usuarioActual?.email){
+      <button mat-button aria-label="ícono de puntaje" (click)="navegarA('/juegos/resultados')">
+        <mat-icon>scoreboard</mat-icon>
+        Resultados
+      </button>
+    }
+
+    @if (usuarioActual?.email){
       <button mat-button aria-label="ícono de encuesta" (click)="navegarA('/juegos/encuesta')">
         <mat-icon>list_alt</mat-icon>
         Encuesta

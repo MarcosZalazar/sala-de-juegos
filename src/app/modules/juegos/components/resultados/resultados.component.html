@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<h2>Mejores resultados</h2>
+
+<div>
+  <input type="text" placeholder="Filtrar por usuario o juego..."
+   [(ngModel)]="filtro" (input)="filtrarResultados()"/>
+  <table>
+    <thead>
+      <tr>
+        <th>USUARIO</th>
+        <th>PUNTAJE</th>
+        <th>JUEGO</th>
+        <th>FECHA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of resultadosFiltrados">
+        <td>{{ resultado.usuario }}</td>
+        <td>{{ resultado.puntaje }}</td>
+        <td>{{ resultado.juego }}</td>
+        <td>{{ resultado.fecha | date: 'dd/MM/yyyy, HH:mm' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

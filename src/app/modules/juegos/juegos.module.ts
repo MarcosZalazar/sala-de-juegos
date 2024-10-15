@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import { ResultadosComponent } from './components/resultados/resultados.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatSelectModule} from '@angular/material/select';
     PreguntadosComponent,
     WordleComponent,
     SaladechatComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    ResultadosComponent
   ],
   exports: [
     AhorcadoComponent,
@@ -37,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     PreguntadosComponent,
     WordleComponent,
     SaladechatComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    ResultadosComponent
   ],
   imports: [
     CommonModule,

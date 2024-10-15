@@ -6,7 +6,9 @@ import { MayoromenorComponent } from './components/mayoromenor/mayoromenor.compo
 import { PreguntadosComponent } from './components/preguntados/preguntados.component';
 import { WordleComponent } from './components/wordle/wordle.component';
 import { SaladechatComponent } from './components/saladechat/saladechat.component';
+import { ResultadosComponent } from './components/resultados/resultados.component';
 import { EncuestaComponent } from './components/encuesta/encuesta.component';
+
 
 const routes: Routes = [
   { path: 'ahorcado', component: AhorcadoComponent },
@@ -14,6 +16,7 @@ const routes: Routes = [
   { path: 'preguntados', component: PreguntadosComponent },
   { path: 'wordle', component: WordleComponent },
   { path: 'saladechat', component: SaladechatComponent },
+  { path: 'resultados', component: ResultadosComponent },
   { path: 'encuesta', component: EncuestaComponent },
   { path: '', redirectTo:'ahorcado', pathMatch:"full"}
 ];
